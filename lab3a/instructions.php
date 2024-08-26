@@ -18,6 +18,22 @@ $contact_number = $_POST['contact_number'];
     <meta charset="utf-8">
     <title>IPT10 Laboratory Activity #3A</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+
+    <script>
+        function checkTerms() {
+            var terms = document.getElementById('terms');
+            var submitButton = document.getElementById('submitButton');
+
+            if (terms.checked == 1) {
+                submitButton.disabled = false;
+            } else {
+
+                submitButton.disabled = true;
+            }
+            }
+            
+
+    </script>
 </head>
 <body>
 <section class="section">
@@ -27,16 +43,14 @@ $contact_number = $_POST['contact_number'];
     </h2>
 
     <!-- Supply the correct HTTP method and target form handler resource -->
-    <form method="POST" action="">
-        <input type="hidden" value="<?php echo $complete_name; ?>" />
-        <input type="hidden" value="<?php echo $email; ?>" />
-        <input type="hidden" value="<?php echo $birthdate; ?>" />
-        <input type="hidden" value="<?php echo $contact_number; ?>" />
+    <form method="POST" action="quiz.php">
+        <input type="hidden" name="complete_name"value="<?php echo $complete_name; ?>" />
+        <input type="hidden" name="email"value="<?php echo $email; ?>" />
+        <input type="hidden" name="birthdate"value="<?php echo $birthdate; ?>" />
+        <input type="hidden" name="contact_number"value="<?php echo $contact_number; ?>" />
 
         <!-- Display the instruction -->
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+       <h2>Hello <?php echo $complete_name; ?>, please read the instructions first</h2>
 
         <div class="field">
             <label class="label">Terms and conditions</label>
@@ -48,14 +62,14 @@ $contact_number = $_POST['contact_number'];
         <div class="field">
             <div class="control">
                 <label class="checkbox">
-                <input type="checkbox" name="disagree">
+                <input type="checkbox" name="agree" id="terms" onchange="checkTerms()">
                 I agree to the <a href="#">terms and conditions</a>
                 </label>
             </div>
         </div>
 
         <!-- Start Quiz button -->
-        <button type="submit" class="button is-link">Start Quiz</button>
+        <button type="submit" class="button is-link" id="submitButton" disabled>Start Quiz</button>
     </form>
 </section>
 

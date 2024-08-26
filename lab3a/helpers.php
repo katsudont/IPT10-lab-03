@@ -1,6 +1,6 @@
 <?php
 
-define('MAX_QUESTION_NUMBER', 50);
+define('MAX_QUESTION_NUMBER', 5);
 
 function retrieve_questions() {
     // 1. Open the questions/triviaquiz.json file
@@ -35,7 +35,7 @@ function compute_score($answers = []) {
     $score = 0;
     for ($i = 0; $i < MAX_QUESTION_NUMBER; $i++) {
         if ($correct_answers[$i] == $answers[$i]) {
-            $score += 100;
+            $score += 1;
         }
     }
     return $score;
