@@ -1,45 +1,65 @@
-<?php
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IPT10 Laboratory Activity #2</title>
+    <link rel="icon" href="https://phpsandbox.io/assets/img/brand/phpsandbox.png">
+    <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-4.15.0.min.css" />   
+</head>
 
-$upload_directory = getcwd() . '/uploads/';
-$relative_path = '/uploads/';
+<body style="background-color: pink;">
+<div class="u-fixed-width">
+  <div class="p-logo-section">
+    <div class="p-logo-section__items">
+      <div class="p-logo-section__item">
+        <img class="p-logo-section__logo" src="https://www.auf.edu.ph/home/images/logo2.png" alt="Angeles University Foundation">
+      </div>
+    </div>
+  </div>
+</div>
 
-// Handle Text File
-$uploaded_text_file = $upload_directory . basename($_FILES['text_file']['name']);
-$temporary_file = $_FILES['text_file']['tmp_name'];
+<div class="row--50-50 grid-demo">
+  <div class="col">
+    <h4>File Upload</h4>
 
-if (move_uploaded_file($temporary_file, $uploaded_text_file)) {
-    $text_file_content = file_get_contents($uploaded_text_file, 'r');
-    ?>
-    <textarea cols="70" rows="30"><?php echo $text_file_content; ?></textarea>
-    <?php
-} else {
-    echo 'Failed to upload file';
-}
-// Handle PDF File
-$uploaded_pdf_file = $upload_directory . basename($_FILES['pdf_file']['name']);
-$temporary_pdf_file = $_FILES['pdf_file']['tmp_name'];
+    <form>
+        <div class="p-card">
+            <h3>Text File</h3>
+            <p class="p-card__content">
+            <input type="file" name="text_file" accept=".txt" />
+            </p>
+        </div>
+        <div class="p-card">
+            <h3>PDF File</h3>
+            <p class="p-card__content">
+                <input type="file" name="pdf_file" accept=".pdf" />
+            </p>
+        </div>
 
-if (move_uploaded_file($temporary_pdf_file, $uploaded_pdf_file)) {
-    echo "<embed src='{$relative_path}" . basename($_FILES['pdf_file']['name']) . "' width='600' height='400' alt='pdf' />";
-} else {
-    echo 'Failed to upload PDF file';
-}
-
-// Handle Audio File
-$uploaded_audio_file = $upload_directory . basename($_FILES['audio_file']['name']);
-$temporary_audio_file = $_FILES['audio_file']['tmp_name'];
-
-if (move_uploaded_file($temporary_audio_file, $uploaded_audio_file)) {
-    echo "<audio controls>
-            <source src='{$relative_path}" . basename($_FILES['audio_file']['name']) . "' type='audio/mpeg'>
-          Your browser does not support the audio element.
-          </audio>";
-} else {
-    echo 'Failed to upload audio file';
-}
+        <div class="p-card">
+            <h3>Audio File</h3>
+            <p class="p-card__content">
+                <input type="file" name="audio_file" accept=".mp3" />
+            </p>
+        </div>
+        <div class="p-card">
+            <h3>Image File</h3>
+            <p class="p-card__content">
+                <input type="file" name="image_file" accept="image/*" />
+            </p>
+        </div>
 
 
+        <div>
+            <button>
+                Upload
+            </button>
+        </div>
+    </form>
+    </div>
+  <div class="col">
+  <img class="p-logo-section__logo" src="https://www.auf.edu.ph/home/images/mascot/CCS.png" alt="College of Computing Studies">
+  </div>
+</div>
 
-echo '<pre>';
-var_dump($_FILES);
-exit;
+</body>
+</html>
