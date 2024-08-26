@@ -15,8 +15,17 @@ if (move_uploaded_file($temporary_file, $uploaded_text_file)) {
 } else {
     echo 'Failed to upload file';
 }
+// Handle PDF File
+$uploaded_pdf_file = $upload_directory . basename($_FILES['pdf_file']['name']);
+$temporary_pdf_file = $_FILES['pdf_file']['tmp_name'];
 
+if (move_uploaded_file($temporary_pdf_file, $uploaded_pdf_file)) {
+    echo "<embed src='{$relative_path}" . basename($_FILES['pdf_file']['name']) . "' width='600' height='400' alt='pdf' />";
+} else {
+    echo 'Failed to upload PDF file';
+}
 
 echo '<pre>';
 var_dump($_FILES);
 exit;
+?>
